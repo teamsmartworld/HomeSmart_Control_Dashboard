@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartHome — Control Centre</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       SIDEBAR NAV
+  ══════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">⌂</span>
+      <span class="brand-name">SmartHome</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-panel="overview">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <span>Overview</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="lighting">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/><path d="M10 17v-2m4 2v-2"/></svg>
+        <span>Lighting</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="climate">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+        <span>Climate</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="security">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Security</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="energy">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Energy</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="entertainment">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        <span>AV & Music</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="appliances">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6m-6 4h6m-3 4v2"/></svg>
+        <span>Appliances</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="garden">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12m0 0C12 7 7 4 2 5c0 5 3 9 8 9m2-9c0-5 5-8 10-7 0 5-3 9-8 9"/></svg>
+        <span>Garden</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="family">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Family</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="water">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        <span>Water</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="health">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Health</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="automations">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2m7.07-3.07l-1.41-1.41M4.93 19.07l1.41-1.41M22 12h-2M4 12H2"/></svg>
+        <span>Automations</span>
+      </a>
+      <a href="#" class="nav-item" data-panel="settings">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="ws-status" id="wsStatus">
+        <span class="ws-dot" id="wsDot"></span>
+        <span class="ws-label" id="wsLabel">Connecting…</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════
+       MOBILE TOP BAR
+  ══════════════════════════════════════ -->
+  <header class="topbar">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="topbar-title" id="topbarTitle">Overview</span>
+    <div class="topbar-time" id="topbarTime"></div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════ -->
+  <main class="main" id="main">
+
+    <!-- ── OVERVIEW PANEL ── -->
+    <section class="panel active" id="panel-overview">
+      <div class="panel-header">
+        <h1 class="panel-title">Good <span id="timeOfDay">evening</span>, David</h1>
+        <p class="panel-sub" id="dateString"></p>
+      </div>
+
+      <!-- Quick stats bar -->
+      <div class="stats-row">
+        <div class="stat-chip">
+          <span class="stat-value" id="stat-devices">24</span>
+          <span class="stat-label">devices on</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-value" id="stat-temp">21°</span>
+          <span class="stat-label">avg. temp</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-value" id="stat-power">1.4kW</span>
+          <span class="stat-label">power now</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-value secure" id="stat-security">Secured</span>
+          <span class="stat-label">security</span>
+        </div>
+      </div>
+
+      <!-- Scene quick-launch -->
+      <div class="section-label">Scenes</div>
+      <div class="scenes-row">
+        <button class="scene-btn active" data-scene="evening">
+          <span class="scene-icon">🌆</span>
+          <span>Evening</span>
+        </button>
+        <button class="scene-btn" data-scene="morning">
+          <span class="scene-icon">🌅</span>
+          <span>Morning</span>
+        </button>
+        <button class="scene-btn" data-scene="away">
+          <span class="scene-icon">🔒</span>
+          <span>Away</span>
+        </button>
+        <button class="scene-btn" data-scene="sleep">
+          <span class="scene-icon">🌙</span>
+          <span>Sleep</span>
+        </button>
+        <button class="scene-btn" data-scene="party">
+          <span class="scene-icon">🎉</span>
+          <span>Party</span>
+        </button>
+        <button class="scene-btn" data-scene="cinema">
+          <span class="scene-icon">🎬</span>
+          <span>Cinema</span>
+        </button>
+      </div>
+
+      <!-- Room overview cards -->
+      <div class="section-label">Rooms</div>
+      <div class="rooms-grid">
+        <div class="room-card" data-room="living">
+          <div class="room-card-top">
+            <span class="room-name">Living Room</span>
+            <span class="room-temp" id="temp-living">22°C</span>
+          </div>
+          <div class="room-devices">
+            <span class="device-tag on" id="light-living">Lights <em>on</em></span>
+            <span class="device-tag" id="tv-living">TV <em>off</em></span>
+            <span class="device-tag on" id="ac-living">AC <em>cool</em></span>
+          </div>
+          <div class="room-brightness">
+            <span class="rb-label">Brightness</span>
+            <input type="range" class="room-slider" min="0" max="100" value="70" data-room="living" />
+          </div>
+        </div>
+
+        <div class="room-card" data-room="bedroom">
+          <div class="room-card-top">
+            <span class="room-name">Master Bedroom</span>
+            <span class="room-temp" id="temp-bedroom">19°C</span>
+          </div>
+          <div class="room-devices">
+            <span class="device-tag" id="light-bedroom">Lights <em>off</em></span>
+            <span class="device-tag on" id="ac-bedroom">Heat <em>on</em></span>
+          </div>
+          <div class="room-brightness">
+            <span class="rb-label">Brightness</span>
+            <input type="range" class="room-slider" min="0" max="100" value="0" data-room="bedroom" />
+          </div>
+        </div>
+
+        <div class="room-card" data-room="kitchen">
+          <div class="room-card-top">
+            <span class="room-name">Kitchen</span>
+            <span class="room-temp" id="temp-kitchen">23°C</span>
+          </div>
+          <div class="room-devices">
+            <span class="device-tag on" id="light-kitchen">Lights <em>on</em></span>
+            <span class="device-tag on" id="oven-kitchen">Oven <em>180°</em></span>
+          </div>
+          <div class="room-brightness">
+            <span class="rb-label">Brightness</span>
+            <input type="range" class="room-slider" min="0" max="100" value="90" data-room="kitchen" />
+          </div>
+        </div>
+
+        <div class="room-card" data-room="garden">
+          <div class="room-card-top">
+            <span class="room-name">Garden</span>
+            <span class="room-temp" id="temp-garden">14°C</span>
+          </div>
+          <div class="room-devices">
+            <span class="device-tag" id="light-garden">Lights <em>off</em></span>
+            <span class="device-tag" id="sprinkler-garden">Sprinklers <em>off</em></span>
+          </div>
+          <div class="room-brightness">
+            <span class="rb-label">Brightness</span>
+            <input type="range" class="room-slider" min="0" max="100" value="0" data-room="garden" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity feed -->
+      <div class="section-label">Recent activity</div>
+      <div class="activity-feed" id="activityFeed"></div>
+    </section>
+
+    <!-- ── LIGHTING PANEL ── -->
+    <section class="panel" id="panel-lighting">
+      <div class="panel-header">
+        <h1 class="panel-title">Lighting</h1>
+        <p class="panel-sub">All rooms & zones</p>
+      </div>
+      <div class="section-label">Rooms</div>
+      <div class="light-zones" id="lightZones"></div>
+      <div class="section-label">Color scenes</div>
+      <div class="color-scenes" id="colorScenes"></div>
+    </section>
+
+    <!-- ── CLIMATE PANEL ── -->
+    <section class="panel" id="panel-climate">
+      <div class="panel-header">
+        <h1 class="panel-title">Climate</h1>
+        <p class="panel-sub">Temperature, humidity & air quality</p>
+      </div>
+      <div class="climate-grid" id="climateGrid"></div>
+    </section>
+
+    <!-- ── SECURITY PANEL ── -->
+    <section class="panel" id="panel-security">
+      <div class="panel-header">
+        <h1 class="panel-title">Security</h1>
+        <p class="panel-sub">Locks, cameras & sensors</p>
+      </div>
+      <div class="section-label">System status</div>
+      <div class="alarm-bar" id="alarmBar">
+        <div class="alarm-state secured" id="alarmState">
+          <span class="alarm-icon">🔒</span>
+          <div>
+            <div class="alarm-title">System secured</div>
+            <div class="alarm-sub">All doors locked · No alerts</div>
+          </div>
+        </div>
+        <button class="alarm-btn disarm" id="alarmBtn">Disarm</button>
+      </div>
+      <div class="section-label">Doors & windows</div>
+      <div class="sensor-list" id="sensorList"></div>
+      <div class="section-label">Cameras</div>
+      <div class="camera-grid" id="cameraGrid"></div>
+    </section>
+
+    <!-- ── ENERGY PANEL ── -->
+    <section class="panel" id="panel-energy">
+      <div class="panel-header">
+        <h1 class="panel-title">Energy</h1>
+        <p class="panel-sub">Real-time usage & solar</p>
+      </div>
+      <div class="energy-summary" id="energySummary"></div>
+      <div class="section-label">Top consumers</div>
+      <div class="consumer-list" id="consumerList"></div>
+      <div class="section-label">Usage today</div>
+      <div class="energy-chart-wrap">
+        <canvas id="energyChart" height="160"></canvas>
+      </div>
+    </section>
+
+    <!-- ── ENTERTAINMENT PANEL ── -->
+    <section class="panel" id="panel-entertainment">
+      <div class="panel-header">
+        <h1 class="panel-title">AV & Music</h1>
+        <p class="panel-sub">Multi-room audio & media</p>
+      </div>
+      <div class="now-playing-card" id="nowPlaying"></div>
+      <div class="section-label">Speaker zones</div>
+      <div class="speaker-zones" id="speakerZones"></div>
+    </section>
+
+    <!-- ── APPLIANCES PANEL ── -->
+    <section class="panel" id="panel-appliances">
+      <div class="panel-header">
+        <h1 class="panel-title">Appliances</h1>
+        <p class="panel-sub">Laundry, kitchen & more</p>
+      </div>
+      <div class="appliance-grid" id="applianceGrid"></div>
+    </section>
+
+    <!-- ── GARDEN PANEL ── -->
+    <section class="panel" id="panel-garden">
+      <div class="panel-header">
+        <h1 class="panel-title">Garden & Outdoor</h1>
+        <p class="panel-sub">Weather, irrigation & outdoor lighting</p>
+      </div>
+      <div class="weather-card" id="weatherCard"></div>
+      <div class="section-label">Irrigation zones</div>
+      <div class="irrigation-grid" id="irrigationGrid"></div>
+    </section>
+
+    <!-- ── FAMILY PANEL ── -->
+    <section class="panel" id="panel-family">
+      <div class="panel-header">
+        <h1 class="panel-title">Family & Presence</h1>
+        <p class="panel-sub">Location, access & wellbeing</p>
+      </div>
+      <div class="section-label">At home</div>
+      <div class="family-list" id="familyList"></div>
+      <div class="section-label">Access log</div>
+      <div class="access-log" id="accessLog"></div>
+    </section>
+
+    <!-- ── WATER PANEL ── -->
+    <section class="panel" id="panel-water">
+      <div class="panel-header">
+        <h1 class="panel-title">Water & Plumbing</h1>
+        <p class="panel-sub">Usage, leaks, irrigation & hot water</p>
+      </div>
+      <div class="section-label">Live status</div>
+      <div class="water-summary" id="waterSummary"></div>
+      <div class="section-label">Leak sensors</div>
+      <div class="leak-list" id="leakList"></div>
+      <div class="section-label">Hot water</div>
+      <div class="hotwater-card" id="hotwaterCard"></div>
+    </section>
+
+    <!-- ── HEALTH PANEL ── -->
+    <section class="panel" id="panel-health">
+      <div class="panel-header">
+        <h1 class="panel-title">Health & Wellness</h1>
+        <p class="panel-sub">Air quality, sleep & family wellbeing</p>
+      </div>
+      <div class="section-label">Indoor air quality</div>
+      <div class="health-grid" id="healthGrid"></div>
+      <div class="section-label">Sleep overview</div>
+      <div class="sleep-cards" id="sleepCards"></div>
+    </section>
+
+    <!-- ── AUTOMATIONS PANEL ── -->
+    <section class="panel" id="panel-automations">
+      <div class="panel-header">
+        <h1 class="panel-title">Automations</h1>
+        <p class="panel-sub">Rules, routines & AI suggestions</p>
+      </div>
+      <div class="automation-list" id="automationList"></div>
+    </section>
+
+    <!-- ── SETTINGS PANEL ── -->
+    <section class="panel" id="panel-settings">
+      <div class="panel-header">
+        <h1 class="panel-title">Settings</h1>
+        <p class="panel-sub">Connection, preferences & integrations</p>
+      </div>
+      <div class="settings-group">
+        <div class="settings-label">Home Assistant connection</div>
+        <div class="settings-row">
+          <label class="settings-field-label">Host URL</label>
+          <input type="text" class="settings-input" id="haHost" value="homeassistant.local" />
+        </div>
+        <div class="settings-row">
+          <label class="settings-field-label">Port</label>
+          <input type="text" class="settings-input" id="haPort" value="8123" />
+        </div>
+        <div class="settings-row">
+          <label class="settings-field-label">Access token</label>
+          <input type="password" class="settings-input" id="haToken" placeholder="Long-lived access token" />
+        </div>
+        <button class="settings-save-btn" id="connectBtn">Connect to Home Assistant</button>
+      </div>
+      <div class="settings-group">
+        <div class="settings-label">Demo mode</div>
+        <div class="settings-row">
+          <label class="settings-field-label">Simulated WebSocket data</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="demoToggle" checked />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <p class="settings-hint">When enabled, the dashboard runs on realistic simulated data so you can build and demo without a live Home Assistant instance.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       TOAST NOTIFICATIONS
+  ══════════════════════════════════════ -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
